@@ -1,6 +1,6 @@
 <div align="center">
 
-# ambre<sup>●</sup>
+# ambre By El Mehdi<sup>●</sup>
 
 ### Everyday sneakers, runners and trail shoes
 
