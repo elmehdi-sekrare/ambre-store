@@ -13,6 +13,19 @@ export const ME = {
   city: "Mohammedia, Morocco",
 };
 
+// "Built by El Mehdi" badge: fixed bottom-left on every page (same size as the template's badge:
+// 36px pill, 13px label, 14px logo; logo-only 38px square on phones). Spec: D:\elmehdi-30-days\BRAND.md
+const M_LOGO = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21V6.4L5.4 3h1.4L12 9.9 17.2 3H22v18h-4.6v-9.8L12 18.3l-5.4-7.1V21z"/></svg>`;
+const BADGE = `<a class="ebm-badge" href="${ME.linkedin}" target="_blank" rel="noopener" aria-label="Built by El Mehdi (opens in a new tab)">${M_LOGO}<span>Built by El Mehdi</span></a>`;
+const BADGE_CSS = `<style data-ebm-badge>
+.ebm-badge{position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:20;display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px 0 10px;box-sizing:border-box;border-radius:12px;background:#fff;color:#0b0b0c;text-decoration:none;font:500 13px/1 "Instrument Sans","Inter","Inter Placeholder",system-ui,sans-serif;letter-spacing:.01em;white-space:nowrap;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 1px 1px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);transition:transform .2s ease,box-shadow .2s ease;-webkit-font-smoothing:antialiased}
+.ebm-badge svg{width:14px;height:14px;flex:none;display:block}
+.ebm-badge:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.16),0 6px 16px rgba(0,0,0,.10)}
+.ebm-badge:focus-visible{outline:2px solid #0b0b0c;outline-offset:2px}
+@media (max-width:809.98px){.ebm-badge{width:38px;height:38px;padding:8px;justify-content:center}.ebm-badge span{display:none}.ebm-badge svg{width:18px;height:18px}}
+@media print{.ebm-badge{display:none}}
+</style>`;
+
 const OLD_LINK = "https://visuvate.com/";
 
 // Links: [label in the source files, href, open in new tab]
@@ -94,6 +107,6 @@ export function personalize(text, kind) {
     .replace(/((?:og:title|twitter:title)" content="[^"]*?)\bAmble\b/g, `$1${ME.brand}`)
     .replace(/(title:`[^`]*?)\bAmble\b/g, `$1${ME.brand}`)
     .replace(/\bAmble\b(?![-.\/])/g, ME.shortBrand);
-  if (kind === "html") text = text.replace("</head>", CSS + "</head>");
+  if (kind === "html") text = text.replace("</head>", CSS + BADGE_CSS + "</head>").replace(/<\/body>(?![\s\S]*<\/body>)/, BADGE + "</body>");
   return text;
 }
