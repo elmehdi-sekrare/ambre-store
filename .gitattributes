@@ -1,0 +1,2 @@
+# keep site/ files byte-exact (binary data, hashed names)
+* -text
