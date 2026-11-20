@@ -1,2 +1,12 @@
 # keep site/ files byte-exact (binary data, hashed names)
 * -text
+
+# language stats (repo-polish)
+*.html linguist-language=TypeScript
+*.htm linguist-language=TypeScript
+site/pages/index.html linguist-language=HTML
+site/pages/404.html linguist-language=HTML
+*.css linguist-generated=false linguist-vendored=false
+*.js linguist-generated=false linguist-vendored=false
+*.mjs linguist-generated=false linguist-vendored=false
+# end language stats
